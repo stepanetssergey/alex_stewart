@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="colado_page_form_view">
+    <field name="name">colado.page</field>
+    <field name="model">colado.page</field>
+    <field name="arch" type="xml">
+    <form string="Colado Page">
+    <head>
+    <button name="send_colados_mail_button" string="Send Mail" type="object" class="btn-primary"/>
+    <group>
+    <field name="load_file"  string="Import file" filename="file_name"/>
+    <button name="import_colado_button" type="object" string="Import" />
+    </group>
+    </head>
+    <group>
+        <group>
+	             <field name="Reference" />
+	             <field name="vessel"  width="20"/>
+	             <field name="port"  width="20"/>
+	    </group>
+        <group>
+			    <field name="cargo"  width="20"/>
+			    <field name="bl_quantity"  width="20"/>
+        </group>
+    </group>
+    <group>
+    <group>
+	    <field name="fore_port_initial"  width="20"/>
+	    <field name="fore_port_final" class="oe_clear"/>
+	    <field name="fore_stb_initial" class="oe_clear" />
+	    <field name="fore_stb_final"  class="oe_clear"/>
+	    <field name="aft_port_initial" class="oe_clear"/>
+	    <field name="aft_port_final" class="oe_clear"/>
+	    <field name="aft_stb_initial" class="oe_clear"/>
+	    <field name="aft_stb_final" class="oe_clear"/>
+	    <field name="mid_port_initial" class="oe_clear"/>
+	    <field name="mid_port_final" class="oe_clear"/>
+	    <field name="mid_stb_initial" class="oe_clear"/>
+	    <field name="mid_stb_final" class="oe_clear"/>
+	    <field name="keep_correction_initial" class="oe_clear"/>
+	    <field name="keep_correction_final" class="oe_clear"/>
+    </group>
+    <group>
+	    <field name="base_draft_initial" />
+	    <field name="base_draft_final" />
+	    <field name="base_displa_initial" />
+	    <field name="base_displa_final" />
+	    <field name="frash_water_initial" />
+	    <field name="frash_water_final" />
+	    <field name="fuel_oil_initial" />
+	    <field name="fuel_oil_final" />
+	    <field name="diesel_oil_initial" />
+	    <field name="diesel_oil_final" />
+	    <field name="lub_oil_initial" />
+	    <field name="lub_oil_final" />
+	    <field name="sludge_initial" />
+	    <field name="sludge_final" />
+	    <field name="other_initial" />
+	    <field name="other_final" />
+	    <field name="adv_constant" />
+    </group>
+    </group>
+    <group>
+    <group>
+	    <field name="arrived" />
+	    <field name="pilot_on_board" />
+	    <field name="berthed" />
+	    <field name="commenced" />
+	    <field name="completed" />
+	    <field name="fore_dist_initial" />
+	    <field name="fore_dist_final" />
+	    <field name="aft_dist_initial" />
+	    <field name="aft_dist_final" />
+	    <field name="lbp" />
+	  </group>
+	  <group>
+	    <field name="light_ship" />
+	    <field name="mmt_plus_05_inital" />
+	    <field name="mmt_plus_05_final" />
+	    <field name="mmt_min_05_initial" />
+	    <field name="mmt_min_05_final" />
+	    <field name="density_initial" />
+	    <field name="density_final" />
+	    <field name="tables_dens_initial" />
+	    <field name="tables_dens_final" />
+    </group>
+    </group>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="colado_page_tree_view">
+    	<field name="name">colado.page</field>
+    	<field name="model">colado.page</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Colado page">
+    	          <field name="Reference" />
+    <field name="vessel" />
+    <field name="port" />
+    <field name="cargo" />
+    <field name="bl_quantity" />
+    <field name="fore_port_initial" /> 
+    <field name="fore_port_final" />
+    <field name="fore_stb_initial" />
+    <field name="fore_stb_final" />
+    <field name="aft_port_initial" />
+    <field name="aft_port_final" />
+    <field name="aft_stb_initial" />
+    <field name="aft_stb_final" />
+    <field name="mid_port_initial" />
+    <field name="mid_port_final" />
+    <field name="mid_stb_initial" />
+    <field name="mid_stb_final" />
+    <field name="keep_correction_initial" />
+    <field name="keep_correction_final" />
+    <field name="base_draft_initial" />
+    <field name="base_draft_final" />
+    <field name="base_displa_initial" />
+    <field name="base_displa_final" />
+    <field name="fuel_oil_initial" />
+    <field name="fuel_oil_final" />
+    <field name="diesel_oil_initial" />
+    <field name="diesel_oil_final" />
+    <field name="lub_oil_initial" />
+    <field name="lub_oil_final" />
+    <field name="sludge_initial" />
+    <field name="sludge_final" />
+    <field name="other_initial" />
+    <field name="other_final" />
+    <field name="adv_constant" />
+    <field name="arrived" />
+    <field name="pilot_on_board" />
+    <field name="berthed" />
+    <field name="commenced" />
+    <field name="completed" />
+    <field name="fore_dist_initial" />
+    <field name="fore_dist_final" />
+    <field name="aft_dist_initial" />
+    <field name="aft_dist_final" />
+    <field name="lbp" />
+    <field name="light_ship" />
+    <field name="mmt_plus_05_inital" />
+    <field name="mmt_plus_05_final" />
+    <field name="mmt_min_05_initial" />
+    <field name="mmt_min_05_final" />
+    <field name="density_initial" />
+    <field name="density_final" />
+    <field name="tables_dens_initial" />
+    <field name="tables_dens_final" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="colado_page_action">
+     <field name="name">Colado Page</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">colado.page</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.colado_page_tree_view" />
+    </record>
+    <menuitem name="Hoja de calados" id="colado_page_menu"
+                             parent="sales_team.menu_sales"
+                             action="colado_page_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

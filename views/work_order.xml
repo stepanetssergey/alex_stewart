@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="work_order_form_view">
+    <field name="name">work.order</field>
+    <field name="model">work.order</field>
+    <field name="arch" type="xml">
+    <form string="Work order">
+        <header>
+	        <button name="send_mail_button" string="Send Mail" type="object" class="btn-primary"/>
+	        <!-- <button name="print_report" string="Print Report" type="object" /> -->
+	        <button name="colado_page_button" string="Next Step" type="object" />
+        </header>
+    	<sheet>
+    		<group>
+              <field name="Date_of_beginning"/>
+              <field name="Referance"/>
+              <field name="client_work_order" />
+              <field name="material_to_inspect" />
+              <field name="services" />
+              <field name="vessel" />
+              <field name="place_of_inspection"/>
+              <field name="comments" />
+              <field name="responsible" />
+              <field name="user_id" string="email from" />
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="work_order_tree_view">
+    	<field name="name">work.order</field>
+    	<field name="model">work.order</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Work order">
+    	      <field name="Date_of_beginning"/>
+              <field name="Referance"/>
+              <field name="client_work_order" />
+              <field name="material_to_inspect" />
+              <field name="services" />
+              <field name="vessel" />
+              <field name="place_of_inspection"/>
+              <field name="comments" />
+              <field name="responsible" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="work_order_action">
+     <field name="name">Work order</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">work.order</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.work_order_tree_view" />
+    </record>
+    <menuitem name="Work order" id="work_order_menu"
+                             parent="sales_team.menu_sales"
+                             action="work_order_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="detail_sheet_form_view">
+    <field name="name">detail.sheet</field>
+    <field name="model">detail.sheet</field>
+    <field name="arch" type="xml">
+    <form string="Detail Sheet">
+    	<sheet>
+    		<group>
+              <field name="name"/>
+              <field name="materials"/>
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="detail_sheet_tree_view">
+    	<field name="name">detail.sheet</field>
+    	<field name="model">detail.sheet</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Detail Sheet">
+    	       <field name="name" />
+    	       <field name="materials" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="detail_sheet_action">
+     <field name="name">Detail Sheet</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">detail.sheet</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.detail_sheet_tree_view" />
+    </record>
+    <menuitem name="Detail Sheet" id="detail_sheet_menu"
+                             parent="sales_team.menu_sales"
+                             action="detail_sheet_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

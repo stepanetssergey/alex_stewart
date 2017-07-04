@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="material_packing_form_view">
+    <field name="name">material.packing</field>
+    <field name="model">material.packing</field>
+    <field name="arch" type="xml">
+    <form string="Material Packing">
+    	<sheet>
+    		<group>
+              <field name="name"/>
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="material_packing_tree_view">
+    	<field name="name">material.packing</field>
+    	<field name="model">material.packing</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Material Packing">
+    	       <field name="name" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="material_packing_action">
+     <field name="name">Material Packing</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">material.packing</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.material_packing_tree_view" />
+    </record>
+    <menuitem name="Material/Packing" id="material_packing_menu"
+                             parent="sales_team.menu_sale_config"
+                             action="material_packing_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

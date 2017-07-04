@@ -1,0 +1,32 @@
+<?xml version="1.0"?> 
+<odoo> 
+  <report id="peso_por_colados_report" 
+    string="Peso por colados" 
+    model="colado.page" 
+    report_type="qweb-pdf" 
+    name="alex_stewart.peso_por_colados_template" 
+  /> 
+  
+  <template id="peso_por_colados_template"> 
+  <t t-call="report.html_container"> 
+    <t t-call="report.external_layout"> 
+      <div class="page"> 
+      <p>CERTIFICADO DE ANALISIS</p>
+        <!-- Report page content --> 
+         <t t-foreach="docs" t-as="o">
+         <div class="row col-xs-12">
+         <p>THIS IS TO CERTIFY, that, at the request of EURO SCRAP ALLIANCE
+            B.V., we have attended on board of the vessel</p>
+         <div class="col-xs-6">Client :</div>
+         <div class="col-xs-6">
+           <span t-field="o.client_colado.name" /> </div>
+           </div>
+         </t>
+      </div> 
+      
+     
+    </t> 
+  </t> 
+</template>
+
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="stewart_sale_order_form_view">
+    <field name="name">sale.order</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <button name="action_done" position="after">
+                     <button name="work_order_button" type="object" string="Status Screen" class="btn-primary"
+                     attrs="{'invisible':[('state','not in',['sale'])]}"/>
+                </button>   
+
+				<field name="partner_id" position="after">
+					<field name="subject" string="Subject"/>
+					<field name="location" string="Location of service"/>
+					<field name="attention_of_check" domain="[('parent_id','=',partner_id)]"/>
+                </field>
+                <xpath expr="//field[@name='confirmation_date']" position="attributes">
+               <attribute name="string">Date</attribute> 
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                <attribute name="attrs">{'invisible':True}</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='carrier_id']" position="attributes">
+                <attribute name="attrs">{'invisible':True}</attribute>
+                </xpath>
+                <xpath expr="//notebook" position="before" >
+                <div class="col-xs-12">
+                <group>
+                <div class="col-sx-6"><h2>INSPECTION SERVICES</h2>
+                <group>
+				  <field name="vol_freq_ship_lot"/>
+				  <field name="services_req"/>
+				  <field name="internal_comments_inspection" string="Internal Comments"/>
+				  <field name="comments" string="Comments"/>
+                </group></div>
+                
+                 <div class="col-sx-6"><h2>ANALYTICAL SERVICES</h2>
+                 <group>
+                   <field name="material_packing" />
+                   <field name="expected_number_of_samples" />
+                   <field name="tat" />
+				   <field name="internal_comments_analysis" string="Internal Comments" />
+                   <field name="comments_analysis" string="Comments"/>
+                 </group>               
+                </div>
+                </group>
+                </div>
+                </xpath>
+                <!-- <xpath expr="//group[2]" position="after" >
+                <div class="col-sx-12"><h2>analytical services</h2></div>   
+                </xpath> -->
+                <field name="partner_shipping_id" position="after" >
+                <!-- <group> -->
+                  <!-- <field name="attention_of_check" domain="[('parent_id','=',partner_id)]"/> -->
+                  
+                 <!--  </group> -->
+                </field>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="stewart_sale_order_delivery_form_view">
+		<field name="name">sale.order</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="delivery.view_order_form_with_carrier"/>
+				<field name="arch" type="xml">
+                <xpath expr="//field[@name='carrier_id']" position="attributes">
+                <attribute name="attrs">{'invisible':True}</attribute>
+                </xpath>
+                <xpath expr="//label[@for='carrier_id']" position="attributes">
+                <attribute name="attrs">{'invisible':True}</attribute>
+                </xpath>
+				</field>
+		</record>
+   </data>
+  </odoo>

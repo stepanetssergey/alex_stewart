@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="so_location_form_view">
+    <field name="name">sale.order.location</field>
+    <field name="model">sale.order.location</field>
+    <field name="arch" type="xml">
+    <form string="Locations">
+    	<sheet>
+    		<group>
+              <field name="name"/>
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="so_location_tree_view">
+    	<field name="name">sale.order.location</field>
+    	<field name="model">sale.order.location</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Locations">
+    	       <field name="name" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="so_location_action">
+     <field name="name">Locations</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">sale.order.location</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.so_location_tree_view" />
+    </record>
+    <menuitem name="Locations" id="so_location_menu"
+                             parent="sales_team.menu_sale_config"
+                             action="so_location_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

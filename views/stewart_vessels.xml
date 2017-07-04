@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="stewart_vessels_form_view">
+    <field name="name">stewart.vessels</field>
+    <field name="model">stewart.vessels</field>
+    <field name="arch" type="xml">
+    <form string="Stewart vessels">
+    	<sheet>
+    		<group>
+              <field name="name"/>
+              <field name="comments"/>
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="stewart_vessels_tree_view">
+    	<field name="name">stewart.vessels</field>
+    	<field name="model">stewart.vessels</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Vessels">
+    	       <field name="name" />
+    	       <field name="comments" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="stewart_vessels_action">
+     <field name="name">Vessels</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">stewart.vessels</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.stewart_vessels_tree_view" />
+    </record>
+    <menuitem name="Vessels" id="stewart_vessels_menu"
+                             parent="sales_team.menu_sales"
+                             action="stewart_vessels_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

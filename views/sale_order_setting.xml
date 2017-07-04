@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="sale_order_report_setting_form_view">
+    <field name="name">sale.order.report.setting</field>
+    <field name="model">sale.order.report.setting</field>
+    <field name="arch" type="xml">
+    <form string="Inspection places">
+    	<sheet>
+    		<group>
+    	       <field name="lang" />
+    	       <field name="quotation_validity" />
+    	       <field name="payment_terms" />
+    	       <field name="advanced_payment_term" />
+    	       <field name="payment_details" />
+    	       <field name="invoice_currency" />
+    	       <field name="taxation" />
+    	       <field name="general_terms" />
+    	       <field name="detailed_business" />
+    	       <field name="checked_by_audit" />
+    	       <field name="general_term_and_conditions" />
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="sale_order_report_setting_tree_view">
+    	<field name="name">sale.order.report.setting</field>
+    	<field name="model">sale.order.report.setting</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Sale order setting">
+    	       <field name="lang" />
+    	       <field name="quotation_validity" />
+    	       <field name="payment_terms" />
+    	       <field name="advanced_payment_term" />
+    	       <field name="payment_details" />
+    	       <field name="invoice_currency" />
+    	       <field name="taxation" />
+    	       <field name="general_terms" />
+    	       <field name="detailed_business" />
+    	       <field name="checked_by_audit" />
+    	       <field name="general_term_and_conditions" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="sale_order_setting_action">
+     <field name="name">Sale Order Setting</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">sale.order.report.setting</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.sale_order_report_setting_tree_view" />
+    </record>
+    <menuitem name="Sale Order Setting" id="sale_order_report_setting_menu"
+                             parent="sales_team.menu_sale_config"
+                             action="sale_order_setting_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

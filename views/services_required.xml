@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="services_required_form_view">
+    <field name="name">services.required</field>
+    <field name="model">services.required</field>
+    <field name="arch" type="xml">
+    <form string="Services required">
+    	<sheet>
+    		<group>
+              <field name="name"/>
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="services_required_tree_view">
+    	<field name="name">services.required</field>
+    	<field name="model">services.required</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Services required">
+    	       <field name="name" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="services_required_action">
+     <field name="name">Services Required</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">services.required</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.services_required_tree_view" />
+    </record>
+    <menuitem name="Services Required" id="services_required_menu"
+                             parent="sales_team.menu_sale_config"
+                             action="services_required_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

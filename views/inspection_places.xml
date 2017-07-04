@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="inspection_places_form_view">
+    <field name="name">inspection.places</field>
+    <field name="model">inspection.places</field>
+    <field name="arch" type="xml">
+    <form string="Inspection places">
+    	<sheet>
+    		<group>
+              <field name="name"/>
+              <field name="address"/>
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="inspection_places_tree_view">
+    	<field name="name">inspection.places</field>
+    	<field name="model">inspection.places</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Inspection services">
+    	       <field name="name" />
+    	       <field name="address" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="inspection_places_action">
+     <field name="name">Inspection places</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">inspection.places</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.inspection_places_tree_view" />
+    </record>
+    <menuitem name="Inspection places" id="inspection_places_menu"
+                             parent="sales_team.menu_sales"
+                             action="inspection_places_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

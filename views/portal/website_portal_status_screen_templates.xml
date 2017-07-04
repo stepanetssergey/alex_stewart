@@ -1,0 +1,374 @@
+<odoo>
+<template id="portal_my_home_menu_status_screen" name="Portal layout: status menu entries" inherit_id="website_portal.portal_layout" priority="25">
+
+<xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
+<li>
+  <a href="/my/status_screens">Status Screen</a>
+</li>
+</xpath>
+</template>
+  <template id="portal_my_home_status_screen_list" name="Portal My Home : status entries" inherit_id="website_portal.portal_my_home" priority="25">
+        <xpath expr="//div[contains(@class,'o_my_home_content')]" position="inside">
+            <h3 class="page-header">
+                <a href="/my/status_screens">Your Status Screen
+                    <small class="ml8">
+                        <t t-if="status_screen_count">
+                            <span class='badge'><t t-esc="status_screen_count"/></span>
+                        </t>
+                        <t t-if="not status_screen_count">
+                            There are currently no active status screen.
+                        </t>
+                    </small>
+                </a>
+            </h3>
+        </xpath>
+    </template>
+    <template id="portal_my_status_screens" name="My Status Screen">
+      <t t-call="website_portal.portal_layout">
+        <h3 class="page-header">Your Status Screen</h3>
+        <t t-if="not statuses">
+            <p>There are currently no orders for your account.</p>
+        </t>
+        <t t-if="statuses">
+            <table class="table table-hover o_my_status_table">
+                <thead>
+                  <tr class="active">
+                    <th>Status Screen to Sale Order #</th>
+                    <th>Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <t t-foreach="statuses" t-as="status">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/my/screen/{{status.id}}?{{keep_query()}}"><t t-esc="status.sale_order_id.name"/></a>
+                        </td>
+                        <td>
+                        <span t-field="status.create_date"/>
+                        
+                        </td>
+                    </tr>
+                </t>
+            </table>
+            <div t-if="pager" class="o_portal_pager text-center">
+              <t t-call="website.pager"/>
+            </div>
+        </t>
+      </t>
+    </template>
+<!--  templet for screen status  -->
+	<template id="status_screen_followup" name="Status Screen">
+		<t t-call="website.layout">
+			<div id="wrap">
+				<div class="container">
+					<div class="oe_structure">
+						<div class="row">
+							<div class="col-sm-4">
+								<ol class="breadcrumb mt8">
+									<li>
+										<a href="/my/home">
+											<i class="fa fa-home" />
+										</a>
+									</li>
+									<li>
+										<a
+											t-attf-href="/my/status_screens?{{ keep_query()}}">
+												Status list
+										</a>
+									</li>
+									<li>
+											Status order #
+										<t t-esc="screen.sale_order_id.name" />
+									</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+					<div id="optional_placeholder"></div>
+					<div class="container">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-md-12">
+										<h4>
+											Status screen order
+											<span t-esc="screen.sale_order_id.name" />
+										</h4>
+									</div>
+								</div>
+							</div>
+							<div class="panel-body">
+								<!-- <hr/> -->
+								<div class="mb8">
+									<strong>Date:</strong>
+									<span t-field="screen.create_date" t-options='{"widget": "date"}' />
+								</div>
+								<div class='row'>
+									<div class="col-md-6">
+										<div>
+											<strong>Address</strong>
+										</div>
+										<div>
+											<address t-field="screen.partner_id"
+												t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div>
+											<strong>Sale Order</strong>
+										</div>
+										<div>
+											<span t-field="screen.sale_order_id.name"></span>
+												
+										</div>
+									</div>
+								</div>
+								<hr/>
+								<!-- fields from form -->
+								<div class="row">
+								<!-- first -->
+								<div class="col-md-6">
+								  <div class="col-md-6" style="text-align:right;font-weight:bold;">
+ 								  	<span >Status</span>
+								  </div>
+								  <div class="col-md-6">
+ 								  	<span t-field="screen.status.name" style="text-align:left;"></span>
+								  </div>
+								</div>
+								<div class="col-md-6">
+	 								 <div class="col-md-6" style="text-align:right;font-weight:bold;">
+ 								  	<span >B/L Weight</span>
+									  </div>
+									  <div class="col-md-6">
+	 								  	<span t-field="screen.b_l_weight" style="text-align:left;"></span>
+									  </div>
+								</div>
+								</div>
+								
+								<div class="row">
+								<!-- first -->
+								<div class="col-md-6">
+								  <div class="col-md-6" style="text-align:right;font-weight:bold;">
+ 								  	<span>Inspector</span>
+								  </div>
+								  <div class="col-md-6">
+ 								  	<span t-field="screen.inspector.name" style="text-align:left;"></span>
+								  </div>
+								</div>
+								<div class="col-md-6">
+	 								<div class="col-md-6"  style="text-align:right;font-weight:bold;">
+ 									  <span>Current ETA</span>
+				      				</div>
+									  <div class="col-md-6">
+	 								  	<span t-field="screen.current_date" style="text-align:left;"></span>
+									  </div>
+								</div>
+								</div>
+								<div class="row">
+								<!-- first -->
+								<div class="col-md-6">
+								  <div class="col-md-6"  style="text-align:right;font-weight:bold;">
+ 								  	<span>Vessel</span>
+								  </div>
+								  <div class="col-md-6">
+ 								  	<span t-field="screen.vessel.name" style="text-align:left;"></span>
+								  </div>
+								</div>
+								<div class="col-md-6">
+	 								<div class="col-md-6"  style="text-align:right;font-weight:bold;">
+ 									  	<span>Vessel Arrived</span>
+				      				</div>
+									  <div class="col-md-6">
+	 								  	<span t-field="screen.vessel_arrived" style="text-align:left;"></span>
+									  </div>
+								</div>
+								</div>
+								<div class="row">
+								<!-- first -->
+								<div class="col-md-6">
+								  <div class="col-md-6"  style="text-align:right;font-weight:bold;">
+ 								  	<span>Discharge port</span>
+								  </div>
+								  <div class="col-md-6">
+ 								  	<span t-field="screen.discharge_port" style="text-align:left;"></span>
+								  </div>
+								</div>
+								<div class="col-md-6"  style="text-align:right;font-weight:bold;">
+	 								<div class="col-md-6">
+ 									  	<pan>P.O.B.</pan>
+				      				</div>
+									  <div class="col-md-6">
+	 								  	<span t-field="screen.p_o_b" style="text-align:left;"></span>
+									  </div>
+								</div>
+								</div>
+								
+								<div class="row">
+								<!-- first -->
+								<div class="col-md-6">
+								  <div class="col-md-6"  style="text-align:right;font-weight:bold;">
+								  </div>
+								  <div class="col-md-6">
+								  </div>
+								</div>
+								<div class="col-md-6"  style="text-align:right;font-weight:bold;">
+	 								<div class="col-md-6">
+ 									  	<pan>Vessel Berthed</pan>
+				      				</div>
+									  <div class="col-md-6">
+	 								  	<span t-field="screen.vessel_berthed" style="text-align:left;"></span>
+									  </div>
+								</div>
+								</div>
+								
+								<div class="row">
+								<!-- first -->
+								<div class="col-md-6">
+								  <div class="col-md-6"  style="text-align:right;font-weight:bold;">
+								  </div>
+								  <div class="col-md-6">
+								  </div>
+								</div>
+								<div class="col-md-6"  style="text-align:right;font-weight:bold;">
+	 								<div class="col-md-6">
+ 									  	<pan>Discharge Commenced</pan>
+				      				</div>
+									  <div class="col-md-6">
+	 								  	<span t-field="screen.discharge_commenced" style="text-align:left;"></span>
+									  </div>
+								</div>
+								</div>
+								
+								<div class="row">
+								<!-- first -->
+								<div class="col-md-6">
+								  <div class="col-md-6"  style="text-align:right;font-weight:bold;">
+								  </div>
+								  <div class="col-md-6">
+								  </div>
+								</div>
+								<div class="col-md-6"  style="text-align:right;font-weight:bold;">
+	 								<div class="col-md-6">
+ 									  	<pan>Discharge Completed</pan>
+				      				</div>
+									  <div class="col-md-6">
+	 								  	<span t-field="screen.discharge_completed" style="text-align:left;"></span>
+									  </div>
+								</div>
+								</div>
+								
+								
+								
+
+								<hr />
+
+								<div class="row">
+									<div class="col-md-1">
+										<strong>Material</strong>
+									</div>
+									<div class="col-md-2 text-right">
+										<strong>B/L Weight</strong>
+									</div>
+									<div class="col-md-2 text-right">
+										<strong>Draft Survey Weight</strong>
+									</div>
+									<div class="col-md-1 text-right">
+										<strong>Difference</strong>
+									</div>
+									<div class="col-md-1 text-right">
+										<strong>Weightbridge</strong>
+									</div>
+									<div class="col-md-1 text-right">
+										<strong>Difference</strong>
+									</div>
+									<div class="col-md-2 text-right">
+										<strong>Difference DWS Y WL</strong>
+									</div>
+									<div class="col-md-2 text-right">
+										<strong>Quality Observed</strong>
+									</div>
+								</div>
+								<t t-foreach="screen.list_of_materials" t-as="ol">
+									<div class="row orders_vertical_align">
+										
+										<div id='product_name' class="col-md-1">
+											<span t-esc="ol.name.name" />
+										</div>
+										<div class="col-md-2 text-right">
+										    <span t-esc="ol.b_l_weight"></span>
+										</div>
+										<div class="col-md-2 text-right">
+											<span t-esc="ol.draft_survey_weight"></span>
+										</div>
+										<div class="col-md-1 text-right">
+										     <span t-esc="ol.difference_bl_draft_text"></span>
+										</div>
+										<div class="col-md-1 text-right">
+										     <span t-esc="ol.weightbridge"></span>
+										</div>
+										<div class="col-md-1 text-right">
+										     <span t-esc="ol.difference_w_text"></span>
+										</div>
+										<div class="col-md-2 text-right">
+										     <span t-esc="ol.difference_dws_text"></span>
+										</div>
+										<div class="col-md-2 text-right">
+										     <span t-esc="ol.quality_observed"></span>
+										</div>
+									</div>
+								</t>
+								<hr/>
+								<div class="row orders_vertical_align">
+										
+										<div id='product_name' class="col-md-1">
+											TOTAL:
+										</div>
+										<div class="col-md-2 text-right">
+										    <span t-field="screen.total_b_l_weight"></span>
+										</div>
+										<div class="col-md-2 text-right">
+											<span t-esc="screen.total_draft_survey_weight"></span>
+										</div>
+										<div class="col-md-1 text-right">
+										</div>
+										<div class="col-md-1 text-right">
+										     <span t-esc="screen.total_weightbridge"></span>
+										</div>
+										<div class="col-md-1 text-right">
+										     <span></span>
+										</div>
+										<div class="col-md-2 text-right">
+										     <span></span>
+										</div>
+										<div class="col-md-2 text-right">
+										     <span></span>
+										</div>
+									</div>
+
+								<hr />
+
+								<div class="row">
+									<div class="col-md-6">
+										<div>
+											<strong>Contact</strong>
+										</div>
+										<div t-field="screen.inspector.partner_id"
+											t-options='{"widget": "contact", "fields": ["email", "phone"]}' />
+									</div>
+									<div class="col-md-6">
+										<div class="row">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="oe_structure mb32" />
+				</div>
+			</div>
+		</t>
+	</template>
+</odoo>

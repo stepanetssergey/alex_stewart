@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="status_screen_form_view">
+    <field name="name">stewart.status.screen</field>
+    <field name="model">stewart.status.screen</field>
+    <field name="arch" type="xml">
+    <form string="Status Screen">
+    <header>
+	        <button name="send_mail_button_status" string="Send Mail" type="object" class="btn-primary"/>
+	        <!-- <button name="print_report" string="Print Report" type="object" /> -->
+	       <!--  <button name="colado_page_button" string="Next Step" type="object" /> -->
+        </header>
+    	<sheet>
+    		<group col="2" colspan="2">
+    		  <field name="partner_id" style="width:200px"/>
+              <field name="sale_order_id"  style="width:200px"/>
+            </group>
+            <div class="col-xs-12">
+            <div class="col-xs-5">
+            <group col="2" >
+              <field name="status"  style="width:100px"/>
+              <field name="inspector"  style="width:100px"/>
+              <field name="vessel"  style="width:100px"/>
+              <field name="discharge_port"  style="width:100px"/>
+            </group>
+            </div>
+            <div class="col-xs-7">
+            <div class="row">
+            <div class="col-xs-6" style="border-right:0.5px solid #ddd;">
+            <label for="b_l_weight" string="B/L Weight"/>
+            </div>
+            <div class="col-xs-6">
+            <field name="b_l_weight" style="width:50px;"/>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-6" style="border-right:0.5px solid #ddd;">
+            <label for="current_date" string="Current ETA"/>
+            </div>
+            <div class="col-xs-6">
+            <field name="current_date"/>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-6" style="border-right:0.5px solid #ddd;">
+            <label for="vessel_arrived" string="Vessel Arrived"/>
+            </div>
+            <div class="col-xs-6">
+            <field name="vessel_arrived"/>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-6" style="border-right:0.5px solid #ddd;">
+            <label for="p_o_b" string="P.O.B"/>
+            </div>
+            <div class="col-xs-6">
+            <field name="p_o_b"/>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-6" style="border-right:0.5px solid #ddd;">
+            <label for="vessel_berthed" string="Vessel Berthed"/>
+            </div>
+            <div class="col-xs-6">
+            <field name="vessel_berthed"/>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-6" style="border-right:0.5px solid #ddd;">
+            <label for="discharge_commenced" string="Discharge Commenced"/>
+            </div>
+            <div class="col-xs-6">
+            <field name="discharge_commenced"/>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-6" style="border-right:0.5px solid #ddd;">
+            <label for="discharge_completed" string="Discharge Completed"/>
+            </div>
+            <div class="col-xs-6">
+            <field name="discharge_completed"/>
+            </div>
+            </div>
+            
+            </div>
+            </div>
+            <div class="row" style="margin-bottom:30px;"><br/><br/></div>
+              <field name="list_of_materials" widget="one2many_list">
+              <tree string="Materials" editable="bottom">
+                 <field name="name" />
+                 <field name="b_l_weight"/>
+                 <field name="draft_survey_weight"/>
+                 <field name="difference_bl_draft_text"/>
+                 <field name="weightbridge"/>
+                 <field name="difference_w_text"/>
+                 <field name="difference_dws_text"/>
+                 <field name="quality_observed"/>              
+              </tree>
+              </field>
+              <div class="row">
+              <div class="col-xs-12">
+              <div class="col-xs-1">
+                TOTAL:
+              </div>
+              <div class="col-xs-1" style="padding-right:0px;padding-left: 40px;">
+               <field name="total_b_l_weight"/>
+              </div>
+              <div class="col-xs-2" style="text-align:right;padding-right:0px;">
+              <field name="total_draft_survey_weight" />
+              </div>
+              <div class="col-xs-1"></div>
+              <div class="col-xs-2" style="text-align:right;">
+              <field name="total_weightbridge"/>
+              </div>
+              </div>
+              </div>
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="status_screen_tree_view">
+    	<field name="name">stewart.status.screen</field>
+    	<field name="model">stewart.status.screen</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Inspection services">
+              <field name="partner_id"/>
+              <field name="sale_order_id"/>
+              <field name="status"/>
+              <field name="inspector"/>
+              <field name="vessel"/>
+              <field name="discharge_port"/>
+              <field name="b_l_weight"/>
+              <field name="current_date"/>
+              <field name="vessel_arrived"/>
+              <field name="p_o_b"/>
+              <field name="vessel_berthed"/>
+              <field name="discharge_commenced"/>
+              <field name="discharge_completed"/>
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="status_screen_action">
+     <field name="name">Status Screen</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">stewart.status.screen</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.status_screen_tree_view" />
+    </record>
+    <menuitem name="Status Screen" id="status_screen_places_menu"
+                             parent="sales_team.menu_sales"
+                             action="status_screen_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

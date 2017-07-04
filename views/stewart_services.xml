@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="stewart_services_form_view">
+    <field name="name">stewart.services</field>
+    <field name="model">stewart.services</field>
+    <field name="arch" type="xml">
+    <form string="Stewart services">
+    	<sheet>
+    		<group>
+              <field name="name"/>
+              <field name="comments"/>
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="stewart_services_tree_view">
+    	<field name="name">stewart.services</field>
+    	<field name="model">stewart.services</field>
+    	<field name="arch" type="xml">
+    	    <tree string="services">
+    	       <field name="name" />
+    	       <field name="comments" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="stewart_services_action">
+     <field name="name">Services</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">stewart.services</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.stewart_services_tree_view" />
+    </record>
+    <menuitem name="Services" id="stewart_services_menu"
+                             parent="sales_team.menu_sales"
+                             action="stewart_services_action"
+                             sequence="20"/> 
+    </data>
+</odoo>

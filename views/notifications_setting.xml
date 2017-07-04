@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- form view setting -->
+    <record model="ir.ui.view" id="notifications_documents_setting_form_view">
+    <field name="name">notifications.documents.setting</field>
+    <field name="model">notifications.documents.setting</field>
+    <field name="arch" type="xml">
+    <form string="Notifications Setting">
+    	<sheet>
+    		<group>
+              <field name="name"/>
+              <field name="report_id" domain="[('model','=','work.order')]"/>
+   			</group>    
+    	</sheet>
+    </form>
+    </field>
+    </record>
+    <!-- tree view setting -->
+    <record model="ir.ui.view" id="notifications_documents_setting_tree_view">
+    	<field name="name">notifications.documents.setting</field>
+    	<field name="model">notifications.documents.setting</field>
+    	<field name="arch" type="xml">
+    	    <tree string="Notifications Setting">
+    	       <field name="name" />
+    	       <field name="report_id" />
+    	    </tree>
+    	</field>
+    </record>
+    <record model="ir.actions.act_window" id="notifications_documents_setting_action">
+     <field name="name">Notifications Setting</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">notifications.documents.setting</field>
+     <field name="view_type">form</field>
+     <field name="view_mode">tree,form</field>
+     <field name="view_id" ref="alex_stewart.notifications_documents_setting_tree_view" />
+    </record>
+    <menuitem name="Notifications Setting" id="notifications_documents_setting_menu"
+                             parent="sales_team.menu_sale_config"
+                             action="notifications_documents_setting_action"
+                             sequence="20"/> 
+    </data>
+</odoo>
